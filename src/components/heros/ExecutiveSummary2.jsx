@@ -5,7 +5,7 @@ import execsumbuilding from "../../assets/images/exec-sum-building.jpg";
 
 const ExecutiveSummary2 = () => {
   return (
-    <div className="w-full h-full flex flex-col md:flex-row max-w-7xl self-center bg-white">
+    <div className="w-full h-full flex flex-col md:flex-row max-w-7xl self-center bg-white overflow-hidden">
       <div className="w-2/6 bg-gradient-to-r from-dark-blue/95 via-dark-blue to-dark-blue relative">
         <img
           src={execsum}
