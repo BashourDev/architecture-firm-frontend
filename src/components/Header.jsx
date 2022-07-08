@@ -12,79 +12,69 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import logo from "../assets/images/logo.png";
-
-const resources = [
-  {
-    name: "Our Strategy",
-    description: "Check out our strategy.",
-    href: "/#our-strategy",
-    icon: SupportIcon,
-    type: "hash",
-  },
-  // {
-  //   name: "Inspire & Simplify",
-  //   description: "Check out our inspire and simplify section.",
-  //   href: "/#inspire-and-simplify",
-  //   icon: SupportIcon,
-  //   type: "hash",
-  // },
-  {
-    name: "Create Community",
-    description: "Check out our create community section.",
-    href: "/#create-community",
-    icon: SupportIcon,
-    type: "hash",
-  },
-  {
-    name: "In The Making",
-    description: "Check out our in the making section.",
-    href: "/#in-the-making",
-    icon: SupportIcon,
-    type: "hash",
-  },
-  {
-    name: "Connect To Nature",
-    description: "Check out our connect to nature section.",
-    href: "/#connect-to-nature",
-    icon: SupportIcon,
-    type: "hash",
-  },
-  {
-    name: "Our Philosophy",
-    description: "Check out our our philosophy section.",
-    href: "/#our-philosophy",
-    icon: SupportIcon,
-    type: "hash",
-  },
-  {
-    name: "FAQs",
-    description:
-      "Get all of your questions answered in our frequently asked questions section.",
-    href: "/faqs",
-    icon: SupportIcon,
-    type: "link",
-  },
-  // {
-  //   name: "Contact Us",
-  //   description: "Contact us on our available social platforms.",
-  //   href: "/#contact-us",
-  //   icon: PhoneIncomingIcon,
-  //   type: "hash",
-  // },
-  {
-    name: "About Us",
-    description: "Learn more about who we are and what is our mission.",
-    href: "/#about-us",
-    icon: UserGroupIcon,
-    type: "hash",
-  },
-];
+import ChooseLanguage from "./ChooseLanguage";
+import { useTranslation } from "react-i18next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Header() {
+  const { t } = useTranslation();
+
+  const resources = [
+    {
+      name: t("our_strategy"),
+      description: t("our_strategy_description"),
+      href: "/#our-strategy",
+      icon: SupportIcon,
+      type: "hash",
+    },
+    {
+      name: t("create_community"),
+      description: t("create_community_description"),
+      href: "/#create-community",
+      icon: SupportIcon,
+      type: "hash",
+    },
+    // {
+    //   name: "In The Making",
+    //   description: "Check out our in the making section.",
+    //   href: "/#in-the-making",
+    //   icon: SupportIcon,
+    //   type: "hash",
+    // },
+    // {
+    //   name: "Connect To Nature",
+    //   description: "Check out our connect to nature section.",
+    //   href: "/#connect-to-nature",
+    //   icon: SupportIcon,
+    //   type: "hash",
+    // },
+    // {
+    //   name: "Our Philosophy",
+    //   description: "Check out our our philosophy section.",
+    //   href: "/#our-philosophy",
+    //   icon: SupportIcon,
+    //   type: "hash",
+    // },
+    // {
+    //   name: "FAQs",
+    //   description:
+    //     "Get all of your questions answered in our frequently asked questions section.",
+    //   href: "/faqs",
+    //   icon: SupportIcon,
+    //   type: "link",
+    // },
+    {
+      name: t("about_us"),
+      description: t("about_us_description"),
+      href: "/#about-us",
+      icon: UserGroupIcon,
+      type: "hash",
+    },
+  ];
+
   return (
     <Popover className="z-50 sticky w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -103,13 +93,13 @@ export default function Header() {
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
-          <Popover.Group as="nav" className="hidden md:flex space-x-10">
+          <Popover.Group as="nav" className="hidden md:flex gap-10">
             <HashLink
               to="/#services"
               className="text-base font-medium text-white hover:text-white/95"
               smooth
             >
-              Services
+              {t("services")}
             </HashLink>
 
             <HashLink
@@ -117,7 +107,7 @@ export default function Header() {
               className="text-base font-medium text-white hover:text-white/95"
               smooth
             >
-              Sections
+              {t("sections")}
             </HashLink>
 
             <HashLink
@@ -125,7 +115,7 @@ export default function Header() {
               className="text-base font-medium text-white hover:text-white/95"
               smooth
             >
-              Team
+              {t("team")}
             </HashLink>
 
             <Popover className="relative">
@@ -137,7 +127,7 @@ export default function Header() {
                       "group rounded-md inline-flex items-center text-base font-medium hover:text-white/90 focus:outline-none"
                     )}
                   >
-                    <span>More</span>
+                    <span>{t("more")}</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-white/90" : "text-white",
@@ -170,7 +160,7 @@ export default function Header() {
                                   className="flex-shrink-0 h-6 w-6 text-dark-blue"
                                   aria-hidden="true"
                                 />
-                                <div className="ml-4">
+                                <div className="mx-4">
                                   <p className="text-base font-medium text-gray-900">
                                     {item.name}
                                   </p>
@@ -190,7 +180,7 @@ export default function Header() {
                                   className="flex-shrink-0 h-6 w-6 text-dark-blue"
                                   aria-hidden="true"
                                 />
-                                <div className="ml-4">
+                                <div className="mx-4">
                                   <p className="text-base font-medium text-gray-900">
                                     {item.name}
                                   </p>
@@ -208,6 +198,7 @@ export default function Header() {
                 </>
               )}
             </Popover>
+            <ChooseLanguage />
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <HashLink
@@ -215,7 +206,7 @@ export default function Header() {
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-dark-blue hover:bg-dark-gold"
               smooth
             >
-              Contact Us
+              {t("contact_us")}
             </HashLink>
           </div>
         </div>
@@ -260,7 +251,7 @@ export default function Header() {
                   className="text-base font-medium text-dark-blue hover:text-dark-blue/95"
                   smooth
                 >
-                  Services
+                  {t("services")}
                 </HashLink>
 
                 <HashLink
@@ -268,7 +259,7 @@ export default function Header() {
                   className="text-base font-medium text-dark-blue hover:text-dark-blue/95"
                   smooth
                 >
-                  Sections
+                  {t("sections")}
                 </HashLink>
 
                 <HashLink
@@ -276,7 +267,7 @@ export default function Header() {
                   className="text-base font-medium text-dark-blue hover:text-dark-blue/95"
                   smooth
                 >
-                  Team
+                  {t("team")}
                 </HashLink>
                 {resources.map((item) =>
                   item.type === "link" ? (
@@ -298,6 +289,7 @@ export default function Header() {
                     </HashLink>
                   )
                 )}
+                <ChooseLanguage isMobile={true} />
               </div>
               <div>
                 <HashLink

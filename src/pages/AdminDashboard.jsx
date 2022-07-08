@@ -57,13 +57,13 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col h-full font-lato bg-primary/10">
+    <div className="flex flex-col h-full font-lato">
       <div className="w-full h-full bg-building bg-[#001724] bg-blend-overlay bg-no-repeat">
         <Header />
       </div>
-      <div className="flex h-full z-10 overflow-y-auto">
+      <div dir="ltr" className="flex h-full z-10 overflow-y-auto relative">
         <ProSidebar
-          className="z-10 hidden md:block"
+          className="z-10 hidden md:block md:fixed top-0 left-0 h-[90vh]"
           collapsed={sideBarCollapsed}
         >
           <Menu iconShape="circle">
@@ -73,16 +73,14 @@ const AdminDashboard = () => {
             ></MenuItem>
 
             <MenuItem
-              className={`${
-                checkActiveItem("projects") ? "bg-primaryDark" : ""
-              }`}
+              className={`${checkActiveItem("projects") ? "bg-dark-blue" : ""}`}
               icon={<MdHouse />}
             >
               <NavLink to={"/admin/projects"}>Projects</NavLink>
             </MenuItem>
             <MenuItem
               className={`${
-                checkActiveItem("employees") ? "bg-primaryDark" : ""
+                checkActiveItem("employees") ? "bg-dark-blue" : ""
               }`}
               icon={<MdPerson />}
             >

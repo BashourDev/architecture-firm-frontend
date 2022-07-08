@@ -1,92 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link, useNavigate } from "react-router-dom";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import api from "../api/api";
+import { useTranslation } from "react-i18next";
 
 const ProjectsCarousel = ({ title, subtitle }) => {
-  const [projects, setProjects] = useState([
-    {
-      id: 1,
-      name: "Beautiful Building",
-      first_media_only: {
-        original_url:
-          "https://images.adsttc.com/media/images/5de9/3010/3312/fd9f/fd00/04a7/newsletter/Lv_Lin.jpg?1575563274",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 2,
-      name: "Beautiful Building 2",
-      first_media_only: {
-        original_url:
-          "https://i.pinimg.com/originals/82/04/c1/8204c1140a1d524dc471d33cbef8c590.jpg",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 3,
-      name: "Beautiful Building 3",
-      first_media_only: {
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9irJPE-brdC986Mk_wY-jRJB6qmlSevh8_w&usqp=CAU",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 4,
-      name: "Beautiful Building 4",
-      first_media_only: {
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ISovDhjA4rBm1RbRBYROEqJy4JPn5pgP-A&usqp=CAU",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 5,
-      name: "Beautiful Building 5",
-      first_media_only: {
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNj2ObNXYDeLR7kOGgjHV51UhmU9xhyACOQw&usqp=CAU",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 6,
-      name: "Beautiful Building 6",
-      first_media_only: {
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLSiRVobNyps9YSN87L0dRnT12QpDpBHpuc7DgzXRfCD5bICQ0BNd64kP0DWETjHQXA&usqp=CAU",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-    {
-      id: 7,
-      name: "Beautiful Building 7",
-      first_media_only: {
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO58qUpHYYmDl8tOOTDpPgrR4rSV0A6P3Wlg&usqp=CAU",
-      },
-      country: "Syria",
-      city: "Homs",
-      address: "main street",
-    },
-  ]);
+  const { t } = useTranslation();
+  const [projects, setProjects] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
   const navigate = useNavigate();
+
+  const getProjects = async () => {
+    try {
+      const res = await api.get("/projects");
+      setProjects(res.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getProjects();
+  }, []);
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -266,11 +202,13 @@ const ProjectsCarousel = ({ title, subtitle }) => {
                       draggable={false}
                       className="absolute inset-0"
                     />
-                    {project.name}
+                    {t("ln") === "en" ? project.en_name : project.ar_name}
                   </button>
                 </h3>
                 <p className="mt-1 text-xs text-gray-200">
-                  {project?.country}, {project?.city}, {project?.address}
+                  {t("ln") === "en" ? project?.en_country : project?.ar_country}
+                  , {t("ln") === "en" ? project?.en_city : project?.ar_city},{" "}
+                  {t("ln") === "en" ? project?.en_address : project?.ar_address}
                 </p>
               </div>
             </div>

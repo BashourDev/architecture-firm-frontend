@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import AppFileInput from "../components/AppFileInput";
 import AppForm from "../components/forms/AppForm";
@@ -9,19 +9,26 @@ import * as Yup from "yup";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import AppCancelButton from "../components/AppCancelButton";
 import api from "../api/api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ProjectUpdateForm = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [photosURLs, setPhotosURLs] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [initialValues, setInitialValues] = useState({
-    name: "",
-    country: "",
-    city: "",
-    address: "",
-    description: "",
-    is_complete: true,
+    en_name: "",
+    en_country: "",
+    en_city: "",
+    en_address: "",
+    en_description: "",
+    ar_name: "",
+    ar_country: "",
+    ar_city: "",
+    ar_address: "",
+    ar_description: "",
+    is_completed: true,
     completion_date: "",
   });
 
@@ -43,7 +50,7 @@ const ProjectUpdateForm = () => {
   const removeExistingPhoto = async (imageID) => {
     try {
       await api.delete(
-        `/projects/${initialValues?.id}/images/delete/${imageID}`
+        `/projects/${initialValues?.id}/delete/image/${imageID}`
       );
       setInitialValues((old) => ({
         ...old,
@@ -52,12 +59,60 @@ const ProjectUpdateForm = () => {
     } catch (error) {}
   };
 
+  const handleUpdate = async (values) => {
+    try {
+      setIsLoading(true);
+      let formData = new FormData();
+
+      for (let i = 0; i < photos.length; i++) {
+        let file = photos[i];
+        formData.append("photo" + i, file);
+      }
+
+      formData.append("photosCount", photos.length);
+
+      formData.append("en_name", values?.en_name);
+      formData.append("en_country", values?.en_country);
+      formData.append("en_city", values?.en_city);
+      formData.append("en_address", values?.en_address);
+      formData.append("en_description", values?.en_description);
+
+      formData.append("ar_name", values?.en_name);
+      formData.append("ar_country", values?.en_country);
+      formData.append("ar_city", values?.en_city);
+      formData.append("ar_address", values?.en_address);
+      formData.append("ar_description", values?.en_description);
+
+      formData.append("is_completed", values?.is_completed ? 1 : 0);
+      formData.append("completion_date", values?.completion_date);
+
+      await api.post(`/projects/${id}/update`, formData);
+
+      navigate("/admin/projects");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getProject = async () => {
+    const res = await api.get(`/projects/${id}`);
+    console.log(res);
+    setInitialValues(res.data);
+  };
+
+  useEffect(() => {
+    getProject();
+  }, []);
+
   return (
     <>
       <div className="space-y-5 mx-auto max-w-6xl w-full bg-white ring-1 ring-light-gold rounded-md px-3 py-8 md:p-10 my-10">
         <AppForm
           initialValues={initialValues}
           validationSchema={Yup.object().shape({})}
+          onSubmit={handleUpdate}
         >
           <div className="col-span-1 lg:col-span-2 space-y-2 lg:space-y-0 lg:space-x-2 flex flex-col lg:flex-row flex-start items-center">
             <AppFileInput
@@ -109,22 +164,26 @@ const ProjectUpdateForm = () => {
             <h1 className="text-lg text-dark-blue pb-2">English Version</h1>
             <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-4">
               <AppInput
-                id={"name"}
+                id={"en_name"}
                 label="Project Name:"
                 placeholder={"Greate Project"}
               />
-              <AppInput id={"country"} label="Country:" placeholder={"Syria"} />
+              <AppInput
+                id={"en_country"}
+                label="Country:"
+                placeholder={"Syria"}
+              />
             </div>
             <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-4">
-              <AppInput id={"city"} label="City:" placeholder={"Homs"} />
+              <AppInput id={"en_city"} label="City:" placeholder={"Homs"} />
               <AppInput
-                id={"address"}
+                id={"en_address"}
                 label="Address:"
                 placeholder={"Main Street"}
               />
             </div>
             <AppFormTextArea
-              id={"description"}
+              id={"en_description"}
               label="Description:"
               placeholder={"Something about the project"}
             />
@@ -133,28 +192,32 @@ const ProjectUpdateForm = () => {
             <h1 className="text-lg text-dark-blue pb-2">Arabic Version</h1>
             <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-4">
               <AppInput
-                id={"name"}
+                id={"ar_name"}
                 label="Project Name:"
                 placeholder={"Greate Project"}
               />
-              <AppInput id={"country"} label="Country:" placeholder={"Syria"} />
+              <AppInput
+                id={"ar_country"}
+                label="Country:"
+                placeholder={"Syria"}
+              />
             </div>
             <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-4">
-              <AppInput id={"city"} label="City:" placeholder={"Homs"} />
+              <AppInput id={"ar_city"} label="City:" placeholder={"Homs"} />
               <AppInput
-                id={"address"}
+                id={"ar_address"}
                 label="Address:"
                 placeholder={"Main Street"}
               />
             </div>
             <AppFormTextArea
-              id={"description"}
+              id={"ar_description"}
               label="Description:"
               placeholder={"Something about the project"}
             />
           </div>
           <div className="col-span-2 flex items-center gap-x-5">
-            <AppFormSwitch name={"is_complete"} text={"Completed"} />
+            <AppFormSwitch name={"is_completed"} text={"Completed"} />
             <AppInput
               id={"completion_date"}
               label="Date:"
@@ -163,8 +226,10 @@ const ProjectUpdateForm = () => {
             />
           </div>
           <div className="col-span-2 grid grid-cols-2 gap-x-5 md:gap-x-20 gap-y-4">
-            <AppSubmitButton>Update</AppSubmitButton>
-            <AppCancelButton>Cancel</AppCancelButton>
+            <AppSubmitButton isLoading={isLoading}>Update</AppSubmitButton>
+            <AppCancelButton onClick={() => navigate("/admin/projects")}>
+              Cancel
+            </AppCancelButton>
           </div>
         </AppForm>
       </div>

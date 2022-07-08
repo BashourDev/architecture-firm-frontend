@@ -1,7 +1,48 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../api/api";
+import { setToken } from "../api/token";
+import { setUser } from "../api/user";
 import building from "../assets/images/login-building.jpeg";
+import AppForm from "../components/forms/AppForm";
+import AppInput from "../components/forms/AppInput";
+import UserContext from "../contexts/userContext";
+import * as Yup from "yup";
+import AppSubmitButton from "../components/forms/AppSubmitButton";
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
+  const initialValues = {
+    username: "",
+    password: "",
+  };
+
+  const handleLogin = async (values) => {
+    setIsLoading(true);
+    try {
+      const res = await api.post("/login", {
+        username: values.username,
+        password: values.password,
+      });
+
+      userContext.setUser(res.data.user);
+      setUser(res.data.user);
+      setToken(res.data.token);
+
+      navigate("/admin/projects");
+    } catch (err) {
+      console.log(err);
+      if (err?.response?.status === 401) {
+        toast.error("wrong username or password");
+      } else {
+        toast.error("something went wrong");
+      }
+    }
+    setIsLoading(false);
+  };
   return (
     <div className="py-32">
       <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl">
@@ -31,43 +72,32 @@ const Login = () => {
             <span className="w-1/5 border-b lg:w-1/4"></span>
           </div>
 
-          <div className="mt-4">
-            <label
-              className="block mb-2 text-sm font-medium text-gray-600"
-              htmlFor="username"
+          <div className="py-5 space-y-4">
+            <AppForm
+              initialValues={initialValues}
+              validationSchema={Yup.object().shape({
+                username: Yup.string().required().label("Username"),
+                password: Yup.string().required().label("Password"),
+              })}
+              onSubmit={handleLogin}
             >
-              Username
-            </label>
-            <input
-              id="username"
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-            />
-          </div>
+              <AppInput
+                id={"username"}
+                label={"Username"}
+                placeholder={"Enter your username"}
+              />
 
-          <div className="mt-4">
-            <div className="flex justify-between">
-              <label
-                className="block mb-2 text-sm font-medium text-gray-600"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              {/* <a href="#" className="text-xs text-gray-500 hover:underline">
-                Forget Password?
-              </a> */}
-            </div>
+              <AppInput
+                id={"password"}
+                label={"Password"}
+                placeholder={"Enter your password"}
+                type="password"
+              />
 
-            <input
-              id="password"
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-              type="password"
-            />
-          </div>
-
-          <div className="mt-8">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-              Login
-            </button>
+              <div className="mt-8 w-full">
+                <AppSubmitButton>Login</AppSubmitButton>
+              </div>
+            </AppForm>
           </div>
 
           <div className="flex items-center justify-between mt-4">

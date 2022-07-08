@@ -1,33 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import api from "../api/api";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import OtherProjectsCarousel from "../components/OtherProjectsCarousel";
 import ProjectsCarousel from "../components/ProjectsCarousel";
 
 const ProjectOverview = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
-  const [project, setProject] = useState({
-    name: "Greate Project",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit quos exercitationem, eligendi voluptate at eveniet aliquid, blanditiis soluta illo fugit accusamus esse labore aspernatur culpa nemo cupiditate repellat dicta autem.",
-    media: [
-      {
-        id: 1,
-        original_url:
-          "https://i.pinimg.com/originals/82/04/c1/8204c1140a1d524dc471d33cbef8c590.jpg",
-      },
-      {
-        id: 2,
-        original_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9irJPE-brdC986Mk_wY-jRJB6qmlSevh8_w&usqp=CAU",
-      },
-    ],
-  });
+  const [project, setProject] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(
-    project.media[0].original_url
-  );
+  const [selectedImage, setSelectedImage] = useState("");
+  const [otherProjects, setOtherProjects] = useState([]);
+
+  const getProject = async () => {
+    const res = await api.get(`/projects/${id}`);
+    setProject(res.data);
+    setSelectedImage(res.data?.media[0]?.original_url);
+  };
+
+  const getOtherProjects = async () => {
+    const res = await api.get(`/projects/other/${id}`);
+    setOtherProjects(res.data);
+  };
+
+  useEffect(() => {
+    getProject();
+    getOtherProjects();
+  }, [id]);
 
   return (
     <>
@@ -60,26 +62,38 @@ const ProjectOverview = () => {
                 ))}
               </div>
             </div>
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 space-y-3">
+            <div className="lg:w-1/2 w-full lg:px-10 lg:py-6 mt-6 lg:mt-0 space-y-3">
               {/* <h2 className="text-sm title-font text-gray-500 tracking-widest">
               {project?.brand?.name}
             </h2> */}
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                {project?.name}
+                {t("ln") === "en" ? project?.en_name : project?.ar_name}
               </h1>
 
-              <p className="leading-relaxed">{project?.description}</p>
-              <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Location</span>
-                <span className="ml-auto text-gray-900">Homs, Syria</span>
+              <p className="leading-relaxed">
+                {t("ln") === "en"
+                  ? project?.en_description
+                  : project?.ar_description}
+              </p>
+              <div className="flex justify-between border-t border-gray-200 py-2">
+                <span className="text-gray-500">{t("location")}</span>
+                <span className="text-gray-900">
+                  {t("ln") === "en" ? project?.en_country : project?.ar_country}
+                  , {t("ln") === "en" ? project?.en_city : project?.ar_city},{" "}
+                  {t("ln") === "en" ? project?.en_address : project?.ar_address}
+                </span>
               </div>
-              <div className="flex border-t border-gray-200 py-2">
-                <span className="text-gray-500">Completed</span>
-                <span className="ml-auto text-gray-900">Yes</span>
+              <div className="flex justify-between border-t border-gray-200 py-2">
+                <span className="text-gray-500">{t("completed")}</span>
+                <span className="text-gray-900">
+                  {project?.is_completed ? t("yes") : t("no")}
+                </span>
               </div>
-              <div className="flex border-t border-b mb-6 border-gray-200 py-2">
-                <span className="text-gray-500">Completed In</span>
-                <span className="ml-auto text-gray-900">14 months</span>
+              <div className="flex justify-between border-t border-b mb-6 border-gray-200 py-2">
+                <span className="text-gray-500">{t("completed_in")}</span>
+                <span className="text-gray-900">
+                  {project?.completion_date}
+                </span>
               </div>
             </div>
           </div>
@@ -88,7 +102,8 @@ const ProjectOverview = () => {
       <div className="w-full max-w-7xl mx-auto pb-10">
         <OtherProjectsCarousel
           title={"Projects"}
-          subtitle={"Check Out Other Projects"}
+          subtitle={t("other_projects_subtitle")}
+          projects={otherProjects}
         />
       </div>
     </>

@@ -1,0 +1,101 @@
+{
+  "ln": "en",
+
+  "contact_us": "Contact Us",
+  "our_strategy": "Our Strategy",
+  "our_strategy_description": "Check out our strategy.",
+  "create_community": "Create Community",
+  "create_community_description": "Check out our create ommunity section.",
+  "about_us": "About Us",
+  "about_us_description": "Learn more about who we are and what is our mission.",
+  "services": "Services",
+  "sections": "Sections",
+  "team": "Team",
+  "more": "More",
+  "language": "Language",
+
+  "we_dont_design_spaces": "We Don't Design Spaces",
+  "we_think_about": "We Thind About",
+  "a_new_way_of_living": "A New Way Of Living",
+  "learn_more": "Learn More",
+
+  "executive_summary": "EXECUTIVE SUMMARY",
+  "executive_summary_first": "A.I.M was started with one aim in mind to create and manage creative and professional Architectural and Project Management solutions The AIM team has considerable professional experience and are able to offer and provide professional services not restricted purely to Architectural services but embracing the full spectrum of Architectural and project management services",
+  "executive_summary_second": "AIM provides professional services for all and have successfully designed and supervised many buildings and structure types . Our projects range from small domestic to major projects of multi storey design",
+  "executive_summary_third": "To list a few of A.I.M services include: refurbishment, conversion projects from initial feasibility and appraisal evaluation and acquisition , thorough planning and construction to successful completion",
+  "executive_summary_fourth": "AIM offices are state of the art offices with automated project management systems containing Artificial Intelligence elements and advanced Bock Burner solutions for 3D Rendering",
+  "executive_summary_fifth": "All of our workstations are power - houses using CAD visualization and presentation programmes for a full integrated system",
+
+  "architectural_design_and_construction_administration": "Architectural Design And Construction Administration",
+  "structural_design": "Structural Design",
+  "sife_safety_planning": "Life Safety Planning",
+  "exterior_design": "Exterior Design",
+  "space_planning": "Space Planning",
+  "project_management": "Project Management",
+  "interior_design_and_furniture_artwork_selection": "Interior Design And Furniture/Artwork Selection",
+  "pre_design_consulting": "Pre-Design Consulting",
+  "sustainable_design_evaluation": "Sustainable Design Evaluation",
+  "budget_management": "Budget Management",
+  "contractor_selection": "Contractor Selection",
+  "post_occupancy_survey": "Post Occupancy Survey",
+  "facility_masterplanning": "Facility Masterplanning",
+  "graphic_design": "Graphic Design",
+  "landscape_design": "Landscape Design",
+  "supervision": "Supervision",
+
+  "our_projects_title": "Our Projects",
+  "our_projects_subtitle": "Chech Out Our Projects",
+  "other_projects_subtitle": "Chech Out Other Projects",
+
+  "architecture": "Architecture",
+  "architecture_description": "The definition of architecture calls it 'the design of buildings and spaces'. We strive to create buildings and spaces that meet our client's needs, develop a sense of community, and transform our environment. We offer clients a full range of architectural design services, from concept through construction. Our firm includes experts in sustainable design, code compliance, contract administration, and building information modeling who contribute to our projects and create a truly collaborative process",
+
+  "interiors": "Interiors",
+  "interiors_description": "Along with the exterior aesthetic our buildings create, we strive to create interior architecture that adds value to the building and experience within each space. Beyond selecting colors and lighting and furniture, we see our role as imagining how people will interact with and be affected by a space, and how we can enrich their time in it. Our firm offers full-service interior design, lighting design, and furniture, fixture & equipment procurement",
+
+  "structural_design_description": "As a structural engineer section we will be responsible for accurately working out the structural integrity of a proposed construction and ensuring it meets regulations such as health and safety Using computer modelling simulations to predict how structures will act under varying conditions, i.e. high winds, flooding or earth tremors Calculating loads and stresses on structural foundations, beams and walls Ensuring projects meet legal environmental and health and safety standards Advising on suitable materials for a build Advising on building repairs or demolition Preparing bids for tender Working with designers to develop construction plans and blueprints Improving a structure's energy efficiency",
+
+  "planning": "Planning",
+  "planning_description": "Planning allows us bring together a team of architects, landscape architects and urban planners Through this collaborative team, we help clients through the creation of masterplans with a multitude of stakeholders to refine a unified vision for the project, and then frame that vision in a way that moves the project forward",
+
+  "inspire": "Inspire",
+  "inspire_description": "We celebrate architecture's purpose of moving beyond function to uplift the human spirit. When design harmonizes land, light and climate with how people will live, work and play within the architecture, a sense of wonder emerges and. life becomes an artful experience",
+
+  "simplify": "Simplify",
+  "simplify_description": "Simplicity is at the core of our approach to sustainable, functional, artful design. Architecture can bring a sense of clarity and calm to life. We help our clients simplify their lives, reduce environmental impact, and live easier in surroundings that encourage an uplifting serenity",
+
+  "create_community_section": "Taking into account the social, economic and ecological context, we encourage dynamic, healthy communities through design. We master plan for a balance of shared and private space that invites conviviality. Community involvement in the process ensures that all members are heard and honored",
+
+  "our_team": "OUR TEAM",
+  "show_all": "show all",
+  "a_team_of": "A team of",
+  "amazing_individuals": "amazing individuals",
+
+  "contact": "Contact",
+
+  "phone": "Phone",
+  "phone_number": "+9639999999999",
+
+  "email": "Email",
+  "email_address": "info@lorem.mail",
+
+  "address_title": "Address",
+  "address": "21 Main Street, Homs, Syria",
+
+  "social": "Social",
+  "facebook": "",
+  "instagram": "",
+  "twitter": "",
+
+  "follow_us": "follow us on social media platforms to stay posted",
+
+  "location": "Location",
+  "completed": "Completed",
+  "completed_in": "Completed In",
+
+  "yes": "Yes",
+  "no": "No",
+
+  "executive_summary_image_pos": "-right-24",
+  "create_community_image_pos": "-left-24"
+}
