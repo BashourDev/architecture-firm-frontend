@@ -11,12 +11,25 @@ import AppSubmitButton from "../components/forms/AppSubmitButton";
 import AppCancelButton from "../components/AppCancelButton";
 import api from "../api/api";
 import { useNavigate } from "react-router-dom";
+import AppSelect from "../components/forms/AppSelect";
+
+const types = [
+  {
+    id: 1,
+    name: "Modern",
+  },
+  {
+    id: 2,
+    name: "Classic",
+  },
+];
 
 const ProjectCreateForm = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [photosURLs, setPhotosURLs] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [selectedType, setSelectedType] = useState(types[0]);
 
   const initialValues = {
     en_name: "",
@@ -74,6 +87,7 @@ const ProjectCreateForm = () => {
       formData.append("ar_address", values?.en_address);
       formData.append("ar_description", values?.en_description);
 
+      formData.append("type", selectedType?.id);
       formData.append("is_completed", values?.is_completed ? 1 : 0);
       formData.append("completion_date", values?.completion_date);
 
@@ -111,7 +125,7 @@ const ProjectCreateForm = () => {
                   <img
                     src={photo}
                     alt={"photos"}
-                    className="max-w-xs h-28 object-cover"
+                    className="max-w-xs min-w-max h-28 object-cover"
                   />
                   <div className="absolute top-1 left-1 w-full h-full">
                     <MdDelete
@@ -179,6 +193,7 @@ const ProjectCreateForm = () => {
               placeholder={"Something about the project"}
             />
           </div>
+          <div className="col-span-2 flex items-center gap-x-5"></div>
           <div className="col-span-2 flex items-center gap-x-5">
             <AppFormSwitch name={"is_completed"} text={"Completed"} />
             <AppInput
@@ -187,7 +202,13 @@ const ProjectCreateForm = () => {
               placeholder={"1/1/2099"}
               type="date"
             />
+            <AppSelect
+              selected={selectedType}
+              setSelected={setSelectedType}
+              options={types}
+            />
           </div>
+
           <div className="col-span-2 grid grid-cols-2 gap-x-5 md:gap-x-20 gap-y-4">
             <AppSubmitButton isLoading={isLoading}>Create</AppSubmitButton>
             <AppCancelButton onClick={() => navigate("/admin/projects")}>

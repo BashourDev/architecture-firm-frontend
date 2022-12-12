@@ -14,13 +14,15 @@
   "more": "More",
   "language": "Language",
 
+  "welcome_to_aim": "Welcome To",
   "we_dont_design_spaces": "We Don't Design Spaces",
-  "we_think_about": "We Thind About",
+  "we_think_about": "We Think About",
   "a_new_way_of_living": "A New Way Of Living",
+  "welcome_summary": "A.I.M was started with one aim in mind to create and manage creative and professional Architectural and Project Management solutions",
   "learn_more": "Learn More",
 
   "executive_summary": "EXECUTIVE SUMMARY",
-  "executive_summary_first": "A.I.M was started with one aim in mind to create and manage creative and professional Architectural and Project Management solutions The AIM team has considerable professional experience and are able to offer and provide professional services not restricted purely to Architectural services but embracing the full spectrum of Architectural and project management services",
+  "executive_summary_first": "A.I.M was started with one aim in mind to create and manage creative and professional Architectural and Project Management solutions The AIM team has professional experience and are able to offer and provide professional services not restricted purely to Architectural services but embracing the full spectrum of Engineering services",
   "executive_summary_second": "AIM provides professional services for all and have successfully designed and supervised many buildings and structure types . Our projects range from small domestic to major projects of multi storey design",
   "executive_summary_third": "To list a few of A.I.M services include: refurbishment, conversion projects from initial feasibility and appraisal evaluation and acquisition , thorough planning and construction to successful completion",
   "executive_summary_fourth": "AIM offices are state of the art offices with automated project management systems containing Artificial Intelligence elements and advanced Bock Burner solutions for 3D Rendering",
@@ -44,8 +46,8 @@
   "supervision": "Supervision",
 
   "our_projects_title": "Our Projects",
-  "our_projects_subtitle": "Chech Out Our Projects",
-  "other_projects_subtitle": "Chech Out Other Projects",
+  "our_projects_subtitle": "Check Out Our Projects",
+  "other_projects_subtitle": "Check Out Other Projects",
 
   "architecture": "Architecture",
   "architecture_description": "The definition of architecture calls it 'the design of buildings and spaces'. We strive to create buildings and spaces that meet our client's needs, develop a sense of community, and transform our environment. We offer clients a full range of architectural design services, from concept through construction. Our firm includes experts in sustainable design, code compliance, contract administration, and building information modeling who contribute to our projects and create a truly collaborative process",
@@ -74,18 +76,18 @@
   "contact": "Contact",
 
   "phone": "Phone",
-  "phone_number": "+9639999999999",
+  "phone_number": "+971 55 553 0875",
 
   "email": "Email",
-  "email_address": "info@lorem.mail",
+  "email_address": "aim@aimeng.ae",
 
   "address_title": "Address",
-  "address": "21 Main Street, Homs, Syria",
+  "address": "UAE, AL AIN CITY - Central District - AL RUBAINAH HESSA BINT MOHAMMED STR",
 
   "social": "Social",
-  "facebook": "",
-  "instagram": "",
-  "twitter": "",
+  "facebook": "https://www.facebook.com/profile.php?id=100082965927078",
+  "instagram": "https://instagram.com/aim.eng2022?igshid=YmMyMTA2M2Y=",
+  "whatsapp": "037532899",
 
   "follow_us": "follow us on social media platforms to stay posted",
 

@@ -10,6 +10,18 @@ import AppSubmitButton from "../components/forms/AppSubmitButton";
 import AppCancelButton from "../components/AppCancelButton";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
+import AppSelect from "../components/forms/AppSelect";
+
+const types = [
+  {
+    id: 1,
+    name: "Modern",
+  },
+  {
+    id: 2,
+    name: "Classic",
+  },
+];
 
 const ProjectUpdateForm = () => {
   const { id } = useParams();
@@ -17,6 +29,8 @@ const ProjectUpdateForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [photosURLs, setPhotosURLs] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [selectedType, setSelectedType] = useState({});
+
   const [initialValues, setInitialValues] = useState({
     en_name: "",
     en_country: "",
@@ -83,6 +97,8 @@ const ProjectUpdateForm = () => {
       formData.append("ar_address", values?.en_address);
       formData.append("ar_description", values?.en_description);
 
+      formData.append("type", selectedType?.id);
+
       formData.append("is_completed", values?.is_completed ? 1 : 0);
       formData.append("completion_date", values?.completion_date);
 
@@ -100,6 +116,7 @@ const ProjectUpdateForm = () => {
     const res = await api.get(`/projects/${id}`);
     console.log(res);
     setInitialValues(res.data);
+    setSelectedType(types.find((proj) => proj.id === res.data.type));
   };
 
   useEffect(() => {
@@ -223,6 +240,11 @@ const ProjectUpdateForm = () => {
               label="Date:"
               placeholder={"1/1/2099"}
               type="date"
+            />
+            <AppSelect
+              selected={selectedType}
+              setSelected={setSelectedType}
+              options={types}
             />
           </div>
           <div className="col-span-2 grid grid-cols-2 gap-x-5 md:gap-x-20 gap-y-4">

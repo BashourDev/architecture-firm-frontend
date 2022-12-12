@@ -26,7 +26,10 @@ const Home = () => {
       <div id="sections" className="w-full flex justify-center pt-80 pb-10">
         <OurSections />
       </div>
-      <div id="team" className="w-full flex justify-center py-10 px-2">
+      <div
+        id="team"
+        className="w-full flex justify-center py-10 px-2 max-w-7xl mx-auto"
+      >
         <Team />
       </div>
       <div id="our-strategy" className="w-full flex justify-center py-10 px-2">

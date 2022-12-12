@@ -16,9 +16,15 @@ const ProjectOverview = () => {
   const [otherProjects, setOtherProjects] = useState([]);
 
   const getProject = async () => {
-    const res = await api.get(`/projects/${id}`);
-    setProject(res.data);
-    setSelectedImage(res.data?.media[0]?.original_url);
+    try {
+      setIsLoading(true);
+      const res = await api.get(`/projects/${id}`);
+      setProject(res.data);
+      setSelectedImage(res.data?.media[0]?.original_url);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getOtherProjects = async () => {
@@ -36,24 +42,24 @@ const ProjectOverview = () => {
       <div className="w-full h-full bg-building bg-[#001724] bg-blend-overlay bg-no-repeat">
         <Header />
       </div>
-      <section className="text-gray-700 body-font overflow-hidden bg-white">
-        <div className="container px-5 py-24 mx-auto">
+      <section className="text-gray-700 body-font overflow-hidden bg-white pb-10">
+        <div className="container px-5 py-10 md:py-24 mx-auto">
           {isLoading && <Loading />}
           <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
-            <div className="space-y-2">
+            <div className="space-y-2 h-full">
               <img
                 alt="project"
-                className="h-[26rem] max-w-sm xl:max-w-md 2xl:max-w-lg object-cover object-center rounded border border-gray-200"
+                className="max-h-[24rem] mx-auto max-w-sm xl:max-w-md 2xl:max-w-lg object-contain object-center rounded border border-gray-200"
                 src={selectedImage}
               />
-              <div className="flex space-x-3 items-center">
+              <div className="flex space-y-3 justify-center md:justify-start items-center max-w-sm xl:max-w-md 2xl:max-w-lg flex-wrap h-fit">
                 {project?.media?.map((media, i) => (
                   <img
                     key={i}
                     src={media?.original_url}
                     alt=""
                     onClick={() => setSelectedImage(media?.original_url)}
-                    className={`w-20 h-24 object-cover object-center rounded border border-gray-200 cursor-pointer hover:opacity-95 ${
+                    className={`w-[5.2rem] h-24 mx-2 object-cover object-center rounded border border-gray-200 cursor-pointer hover:opacity-95 ${
                       selectedImage === media?.original_url
                         ? "ring-4 ring-primaryDark/60"
                         : ""
@@ -63,9 +69,15 @@ const ProjectOverview = () => {
               </div>
             </div>
             <div className="lg:w-1/2 w-full lg:px-10 lg:py-6 mt-6 lg:mt-0 space-y-3">
-              {/* <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              {project?.brand?.name}
-            </h2> */}
+              {/* <h2 className="text-sm title-font text-dark-gold tracking-widest">
+                {project?.type === 1
+                  ? t("ln") === "en"
+                    ? "Modren"
+                    : "عصري"
+                  : t("ln") === "en"
+                  ? "Classic"
+                  : "كلاسيكي"}
+              </h2> */}
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                 {t("ln") === "en" ? project?.en_name : project?.ar_name}
               </h1>

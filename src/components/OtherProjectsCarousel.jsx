@@ -134,7 +134,7 @@ const OtherProjectsCarousel = ({ title, subtitle, projects }) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1.3,
+          slidesToShow: projects.length > 1 ? 1.3 : projects.length,
           slidesToScroll: 1,
           initialSlide: 0,
           infinite: true,
@@ -184,6 +184,15 @@ const OtherProjectsCarousel = ({ title, subtitle, projects }) => {
                       !isDragging && navigate(`/projects/${project.id}`)
                     }
                   >
+                    {/* <h2 className="text-sm title-font text-dark-gold tracking-widest text-start">
+                      {project?.type === 1
+                        ? t("ln") === "en"
+                          ? "Modren"
+                          : "عصري"
+                        : t("ln") === "en"
+                        ? "Classic"
+                        : "كلاسيكي"}
+                    </h2> */}
                     <span
                       aria-hidden="true"
                       draggable={false}

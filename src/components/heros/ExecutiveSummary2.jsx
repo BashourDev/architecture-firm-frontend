@@ -55,7 +55,7 @@ const ExecutiveSummary2 = () => {
           <img
             src={execsumeng}
             alt="engineer"
-            className="w-full h-fit absolute md:static opacity-25 md:opacity-100"
+            className="w-full h-fit absolute md:static opacity-25 md:opacity-100 max-w-xs"
           />
         </div>
       </div>

@@ -11,7 +11,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/logo-new.png";
 import ChooseLanguage from "./ChooseLanguage";
 import { useTranslation } from "react-i18next";
 
@@ -78,12 +78,12 @@ export default function Header() {
   return (
     <Popover className="z-50 sticky w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center border-b-2 border-dark-blue py-4 md:justify-start md:space-x-10">
+        <div className="flex justify-between items-center border-b-2 border-dark-blue py-2 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/" className="flex">
               <span className="sr-only">Workflow</span>
               <h1 className="text-3xl font-semibold text-white">
-                <img src={logo} alt={"AIM logo"} className={"h-14"} />
+                <img src={logo} alt={"AIM logo"} className={"h-20"} />
               </h1>
             </Link>
           </div>

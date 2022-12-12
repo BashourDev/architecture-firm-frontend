@@ -197,6 +197,15 @@ const ProjectsCarousel = ({ title, subtitle }) => {
                       !isDragging && navigate(`/projects/${project.id}`)
                     }
                   >
+                    {/* <h2 className="text-sm title-font text-light-gold tracking-widest text-start">
+                      {project?.type === 1
+                        ? t("ln") === "en"
+                          ? "Modren"
+                          : "عصري"
+                        : t("ln") === "en"
+                        ? "Classic"
+                        : "كلاسيكي"}
+                    </h2> */}
                     <span
                       aria-hidden="true"
                       draggable={false}

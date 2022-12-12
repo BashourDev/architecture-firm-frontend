@@ -19,7 +19,7 @@ const Team = () => {
   }, []);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-white">
+    <section className="relative py-20 overflow-hidden bg-white w-full">
       <span className="absolute top-0 right-0 flex flex-col items-end mt-0 -mr-16 opacity-60">
         <span className="container hidden w-screen h-32 max-w-xs mt-20 transform rounded-full rounded-r-none md:block md:max-w-xs lg:max-w-lg 2xl:max-w-3xl bg-blue-50"></span>
       </span>
