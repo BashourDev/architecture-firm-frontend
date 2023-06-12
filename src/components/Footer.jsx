@@ -28,6 +28,17 @@ export const Footer = () => {
             {t("contact")}
           </p>
           <div className="flex">
+            <p className="mr-1 text-light">{t("landline")}:</p>
+            <a
+              href={`tel:${t("landline_number")}`}
+              aria-label="Our landline"
+              title="Our landline"
+              className="transition-colors duration-300 text-light hover:text-light-gold"
+            >
+              {t("landline_number")}
+            </a>
+          </div>
+          <div className="flex">
             <p className="mr-1 text-light">{t("phone")}:</p>
             <a
               href={`tel:${t("phone_number")}`}

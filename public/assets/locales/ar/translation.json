@@ -75,14 +75,17 @@
 
   "contact": "اتصل بنا",
 
+  "landline": "الهاتف الثابت",
+  "landline_number": "037532899",
+
   "phone": "هاتف",
-  "phone_number": "+9639999999999",
+  "phone_number": "+971 55 553 0875",
 
   "email": "بريد الكتروني",
-  "email_address": "info@lorem.mail",
+  "email_address": "aim@aimeng.ae",
 
   "address_title": "عنوان",
-  "address": "21 Main Street, Homs, Syria",
+  "address": "UAE, AL AIN CITY - Central District - AL RUBAINAH HESSA BINT MOHAMMED STR",
 
   "social": "تواصل اجتماعي",
   "facebook": "",
