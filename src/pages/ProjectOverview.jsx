@@ -6,6 +6,9 @@ import Header from "../components/Header";
 import Loading from "../components/Loading";
 import OtherProjectsCarousel from "../components/OtherProjectsCarousel";
 import ProjectsCarousel from "../components/ProjectsCarousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import ProjectImageCarousel from "../components/ProjectImageCarousel";
 
 const ProjectOverview = () => {
   const { t } = useTranslation();
@@ -21,6 +24,7 @@ const ProjectOverview = () => {
       const res = await api.get(`/projects/${id}`);
       setProject(res.data);
       setSelectedImage(res.data?.media[0]?.original_url);
+      console.log(res);
     } catch (error) {
     } finally {
       setIsLoading(false);
@@ -46,7 +50,7 @@ const ProjectOverview = () => {
         <div className="container px-5 py-10 md:py-24 mx-auto">
           {isLoading && <Loading />}
           <div className="lg:w-4/5 mx-auto flex flex-wrap justify-center">
-            <div className="space-y-2 h-full">
+            {/* <div className="space-y-2 h-full">
               <img
                 alt="project"
                 className="max-h-[24rem] mx-auto max-w-sm xl:max-w-md 2xl:max-w-lg object-contain object-center rounded border border-gray-200"
@@ -67,6 +71,9 @@ const ProjectOverview = () => {
                   />
                 ))}
               </div>
+            </div> */}
+            <div className="space-y-2 h-full" dir="ltr">
+              <ProjectImageCarousel media={project?.media} />
             </div>
             <div className="lg:w-1/2 w-full lg:px-10 lg:py-6 mt-6 lg:mt-0 space-y-3">
               {/* <h2 className="text-sm title-font text-dark-gold tracking-widest">
@@ -113,7 +120,7 @@ const ProjectOverview = () => {
       </section>
       <div className="w-full max-w-7xl mx-auto pb-10">
         <OtherProjectsCarousel
-          title={"Projects"}
+          title={t("ln") === "en" ? "Projects" : "المشاريع"}
           subtitle={t("other_projects_subtitle")}
           projects={otherProjects}
         />

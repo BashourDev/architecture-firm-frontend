@@ -9,7 +9,7 @@ export default function AppSelect({ selected, setSelected, options }) {
         <div className="relative">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-dark-blue/70 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-blue/50 sm:text-sm">
             <span className="block truncate text-dark-blue">
-              {selected.name}
+              {selected?.name}
             </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <SelectorIcon
@@ -42,7 +42,7 @@ export default function AppSelect({ selected, setSelected, options }) {
                           selected ? "font-medium" : "font-normal"
                         }`}
                       >
-                        {option.name}
+                        {option?.name}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-dark-blue/80">

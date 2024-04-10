@@ -4,7 +4,7 @@ import logo from "../assets/images/logo-new.png";
 export const Footer = () => {
   const { t } = useTranslation();
   return (
-    <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <a
@@ -62,16 +62,28 @@ export const Footer = () => {
           </div>
           <div className="flex">
             <p className="mr-1 text-white">{t("address_title")}:</p>
-            <a
-              href="https://www.google.com/maps"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Our address"
-              title="Our address"
-              className="transition-colors duration-300 text-light hover:text-light-gold"
-            >
-              {t("address")}
-            </a>
+            <div className="flex flex-col gap-y-2">
+              <a
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Our address"
+                title="Our address"
+                className="transition-colors duration-300 text-light hover:text-light-gold"
+              >
+                {t("address")}
+              </a>
+              <a
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Our Second address"
+                title="Our Second address"
+                className="transition-colors duration-300 text-light hover:text-light-gold"
+              >
+                {t("address2")}
+              </a>
+            </div>
           </div>
         </div>
         <div>

@@ -161,7 +161,7 @@ const ProjectsCarousel = ({ title, subtitle }) => {
   };
 
   return (
-    <div className="rounded-sm pt-8 pb-12">
+    <div className="rounded-sm pt-8 pb-12" dir="ltr">
       <div className="px-2 sm:px-6 pb-8 flex flex-col items-center space-y-4">
         <h3 className="text-dark-gold text-center w-full font-semibold text-base">
           {title}

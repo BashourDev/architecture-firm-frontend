@@ -81,15 +81,17 @@ const ProjectCreateForm = () => {
       formData.append("en_address", values?.en_address);
       formData.append("en_description", values?.en_description);
 
-      formData.append("ar_name", values?.en_name);
-      formData.append("ar_country", values?.en_country);
-      formData.append("ar_city", values?.en_city);
-      formData.append("ar_address", values?.en_address);
-      formData.append("ar_description", values?.en_description);
+      formData.append("ar_name", values?.ar_name);
+      formData.append("ar_country", values?.ar_country);
+      formData.append("ar_city", values?.ar_city);
+      formData.append("ar_address", values?.ar_address);
+      formData.append("ar_description", values?.ar_description);
 
       formData.append("type", selectedType?.id);
       formData.append("is_completed", values?.is_completed ? 1 : 0);
       formData.append("completion_date", values?.completion_date);
+
+      console.log(formData);
 
       await api.post("/projects/create", formData);
 
@@ -113,28 +115,26 @@ const ProjectCreateForm = () => {
             <AppFileInput
               id={"photos"}
               label={"Select Photos:"}
-              containerClassName={"w-full lg:w-72"}
+              containerClassName={"w-full lg:w-72 h-full"}
               onChange={onPhotosChange}
             />
-            <div className="flex overflow-x-auto">
-              {photosURLs.map((photo, i) => (
-                <div
-                  key={i}
-                  className="relative mx-1 rounded-md overflow-hidden"
-                >
-                  <img
-                    src={photo}
-                    alt={"photos"}
-                    className="max-w-xs min-w-max h-28 object-cover"
-                  />
-                  <div className="absolute top-1 left-1 w-full h-full">
-                    <MdDelete
-                      className="text-danger text-2xl cursor-pointer"
-                      onClick={() => removeImage(i)}
-                    />
+            <div className="flex flex-start items-center overflow-x-auto">
+              <div className="flex">
+                {photosURLs.map((photo, i) => (
+                  <div
+                    key={i}
+                    className="relative mx-1 rounded-md overflow-hidden w-40"
+                  >
+                    <img src={photo} alt={"photos"} className="w-full" />
+                    <div className="absolute top-1 left-1 w-full h-full">
+                      <MdDelete
+                        className="text-danger text-2xl cursor-pointer"
+                        onClick={() => removeImage(i)}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
           <div className="space-y-5 ring-1 ring-light-gold rounded-md p-5">

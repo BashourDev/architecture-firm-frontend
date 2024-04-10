@@ -21,7 +21,7 @@ const ExecutiveSummary2 = () => {
         <img
           src={execsumbuilding}
           alt="building"
-          className="h-fit w-44 md:absolute bottom-0"
+          className="w-44 md:absolute bottom-0"
         />
       </div>
       <div className="w-full px-2 md:px-10 py-5 space-y-5 text-dark relative">

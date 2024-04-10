@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
+import EmployeeDetailsModal from "../modals/EmployeeDetailsModal";
 
 const Team = () => {
   const { t } = useTranslation();
   const [employees, setEmployees] = useState([]);
+  const [selectedEmployee, setSelectedEmployee] = useState(0);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const getEmployees = async () => {
     try {
@@ -39,7 +42,13 @@ const Team = () => {
         </h2>
         <div className="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
           {employees.map((e) => (
-            <div className="flex flex-col items-center justify-center col-span-1">
+            <div
+              className="flex flex-col items-center justify-center col-span-1 cursor-pointer"
+              onClick={() => {
+                setSelectedEmployee(e.id);
+                setIsDetailsOpen(true);
+              }}
+            >
               <div className="relative p-5">
                 <div className="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-blue-50"></div>
                 <img
@@ -57,6 +66,11 @@ const Team = () => {
           ))}
         </div>
       </div>
+      <EmployeeDetailsModal
+        employeeID={selectedEmployee}
+        isOpen={isDetailsOpen}
+        setIsOpen={setIsDetailsOpen}
+      />
     </section>
   );
 };

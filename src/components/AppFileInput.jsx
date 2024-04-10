@@ -3,7 +3,7 @@ import React from "react";
 const AppFileInput = ({ id, label, onChange, containerClassName }) => {
   return (
     <div
-      className={`flex w-full h-32 items-center justify-center ${containerClassName}`}
+      className={`flex w-full items-center justify-center ${containerClassName}`}
     >
       <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-dark-blue rounded-lg shadow-sm tracking-wide uppercase border border-light-gold cursor-pointer hover:bg-dark-blue hover:text-white">
         <svg

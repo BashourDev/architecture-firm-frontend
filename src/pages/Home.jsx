@@ -8,6 +8,7 @@ import OurServices from "../components/heros/OurServices";
 import Team from "../components/heros/Team";
 import Welcome2 from "../components/heros/Welcome2";
 import CreateCommunity from "../components/heros/CreateCommunity";
+import EmployeeDetailsModal from "../components/modals/EmployeeDetailsModal";
 
 const Home = () => {
   return (
